@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Crowd Estimation Result</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<h1>Crowd Estimation Result</h1>
+
+
+
+<div class="image-box">
+
+<h2>Uploaded Image</h2>
+
+<img src="{{ url_for('static', filename='uploads/' + image_name) }}"
+     width="500">
+
+
+</div>
+
+
+
+
+
+{% if heatmap %}
+
+<div class="image-box">
+
+<h2>Crowd Heatmap</h2>
+
+<img src="{{ url_for('static', filename='uploads/' + heatmap) }}"
+     width="500">
+
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+<div class="info-box">
+
+
+
+<h2>Image Information</h2>
+
+
+
+<p>
+<b>Width:</b> {{ width }} pixels
+</p>
+
+
+<p>
+<b>Height:</b> {{ height }} pixels
+</p>
+
+
+<p>
+<b>Channels:</b> {{ channels }}
+</p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+<h2>
+Estimated People:
+
+<span class="count">
+
+{{ people }}
+
+</span>
+
+</h2>
+
+
+
+
+
+
+<h2>
+Crowd Level:
+
+<span class="level">
+
+{{ level }}
+
+</span>
+
+</h2>
+
+
+
+
+
+<p class="message">
+
+{{ message }}
+
+</p>
+
+
+
+
+
+<hr>
+
+
+<h2>
+AI Prediction Confidence
+</h2>
+
+
+<p>
+<b>AI Confidence:</b>
+
+<span class="count">
+{{ confidence }}%
+</span>
+
+</p>
+
+
+<p>
+The prediction is generated using CSRNet density map estimation.
+</p>
+
+
+
+
+
+<hr>
+
+
+<h2>
+AI Model Information
+</h2>
+
+
+
+<p>
+<b>Model:</b> {{ model_name }}
+</p>
+
+
+
+<p>
+<b>Framework:</b> {{ framework }}
+</p>
+
+
+
+<p>
+<b>Device:</b> {{ device }}
+</p>
+
+
+
+<p>
+<b>Processing Time:</b> {{ processing_time }} seconds
+</p>
+
+
+
+</div>
+
+<p>
+<b>Confidence:</b> {{ confidence }}%
+</p>
+
+
+
+
+
+
+<a href="/" class="button">
+
+Analyze Another Image
+
+</a>
+
+
+</div>
+
+
+</body>
+
+
+</html>

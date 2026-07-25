@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AI Crowd Density Estimation</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="home-container">
+
+
+<!-- Hero Section -->
+
+<div class="hero">
+
+
+<h1>
+AI Crowd Density Estimation
+</h1>
+
+
+<p>
+Deep Learning based crowd analysis system using CSRNet.
+Upload a crowd image and get instant people count,
+density heatmap and crowd level prediction.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<!-- Upload Card -->
+
+
+<div class="upload-card">
+
+
+<h2>
+Upload Crowd Image
+</h2>
+
+
+<p>
+Supported formats: JPG, JPEG, PNG
+</p>
+
+
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+
+
+
+<div class="upload-area">
+
+
+<input 
+type="file"
+name="image"
+accept=".jpg,.jpeg,.png"
+required
+>
+
+
+</div>
+
+
+
+<button type="submit">
+
+Analyze Crowd
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+
+<!-- Features -->
+
+
+<div class="features">
+
+
+
+<div class="feature-card">
+
+<h3>
+👥 People Counting
+</h3>
+
+<p>
+AI model estimates the number of people in the image.
+</p>
+
+</div>
+
+
+
+
+
+<div class="feature-card">
+
+<h3>
+🔥 Density Heatmap
+</h3>
+
+<p>
+Visual crowd concentration map generated automatically.
+</p>
+
+</div>
+
+
+
+
+
+
+<div class="feature-card">
+
+<h3>
+🤖 Deep Learning
+</h3>
+
+<p>
+Powered by CSRNet and PyTorch.
+</p>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+</body>
+
+
+</html>
