@@ -1,211 +1,277 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Crowd Estimation Result</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crowd Analysis Result</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
 
 <body>
 
-<div class="container">
 
+    <!-- Navigation -->
 
-<h1>Crowd Estimation Result</h1>
+    <nav class="navbar">
 
+        <div class="logo">
+            Crowd<span>AI</span>
+        </div>
 
+        <div class="nav-links">
 
-<div class="image-box">
+            <a href="/">Home</a>
 
-<h2>Uploaded Image</h2>
+            <a href="/#how-it-works">
+                How It Works
+            </a>
 
-<img src="{{ url_for('static', filename='uploads/' + image_name) }}"
-     width="500">
+            <a href="/#about">
+                About
+            </a>
 
+        </div>
 
-</div>
+    </nav>
 
 
 
+    <!-- Result Page -->
 
+    <main class="result-page">
 
-{% if heatmap %}
 
-<div class="image-box">
+        <div class="result-header">
 
-<h2>Crowd Heatmap</h2>
+            <span class="result-badge">
+                ANALYSIS COMPLETE
+            </span>
 
-<img src="{{ url_for('static', filename='uploads/' + heatmap) }}"
-     width="500">
+            <h1>
+                Crowd Analysis Result
+            </h1>
 
-</div>
+            <p>
+                Your image has been analyzed using
+                the CSRNet deep learning model.
+            </p>
 
-{% endif %}
+        </div>
 
 
 
+        <!-- Images -->
 
+        <div class="result-grid">
 
 
+            <!-- Original Image -->
 
-<div class="info-box">
+            <div class="result-card">
 
+                <div class="card-title">
 
+                    <h2>Original Image</h2>
 
-<h2>Image Information</h2>
+                    <span>INPUT</span>
 
+                </div>
 
 
-<p>
-<b>Width:</b> {{ width }} pixels
-</p>
+                <div class="image-container">
 
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + image_name) }}"
+                        alt="Uploaded Crowd Image"
+                    >
 
-<p>
-<b>Height:</b> {{ height }} pixels
-</p>
+                </div>
 
+            </div>
 
-<p>
-<b>Channels:</b> {{ channels }}
-</p>
 
 
+            <!-- Heatmap -->
 
+            <div class="result-card">
 
+                <div class="card-title">
 
-<hr>
+                    <h2>Density Heatmap</h2>
 
+                    <span>AI OUTPUT</span>
 
+                </div>
 
 
+                <div class="image-container">
 
-<h2>
-Estimated People:
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + heatmap) }}"
+                        alt="Crowd Density Heatmap"
+                    >
 
-<span class="count">
+                </div>
 
-{{ people }}
+            </div>
 
-</span>
 
-</h2>
+        </div>
 
 
 
+        <!-- Statistics -->
 
+        <div class="statistics">
 
 
-<h2>
-Crowd Level:
+            <!-- People -->
 
-<span class="level">
+            <div class="stat-card">
 
-{{ level }}
+                <div class="stat-icon">
+                    👥
+                </div>
 
-</span>
+                <div>
 
-</h2>
+                    <p>Estimated People</p>
 
+                    <h2>
+                        {{ people }}
+                    </h2>
 
+                </div>
 
+            </div>
 
 
-<p class="message">
 
-{{ message }}
+            <!-- Crowd Level -->
 
-</p>
+            <div class="stat-card">
 
+                <div class="stat-icon">
+                    📊
+                </div>
 
+                <div>
 
+                    <p>Crowd Level</p>
 
+                    <h2>
+                        {{ level }}
+                    </h2>
 
-<hr>
+                </div>
 
+            </div>
 
-<h2>
-AI Prediction Confidence
-</h2>
 
 
-<p>
-<b>AI Confidence:</b>
+            <!-- Processing Time -->
 
-<span class="count">
-{{ confidence }}%
-</span>
+            <div class="stat-card">
 
-</p>
+                <div class="stat-icon">
+                    ⚡
+                </div>
 
+                <div>
 
-<p>
-The prediction is generated using CSRNet density map estimation.
-</p>
+                    <p>Processing Time</p>
 
+                    <h2>
+                        {{ processing_time }} sec
+                    </h2>
 
+                </div>
 
+            </div>
 
 
-<hr>
+        </div>
 
 
-<h2>
-AI Model Information
-</h2>
 
+        <!-- Model Information -->
 
+        <div class="message-card">
 
-<p>
-<b>Model:</b> {{ model_name }}
-</p>
+            <h2>
+                Analysis
+            </h2>
 
+            <p>
+                {{ message }}
+            </p>
 
+            <div class="model-details">
 
-<p>
-<b>Framework:</b> {{ framework }}
-</p>
+                <div>
+                    <strong>Model:</strong>
+                    {{ model_name }}
+                </div>
 
+                <div>
+                    <strong>Framework:</strong>
+                    {{ framework }}
+                </div>
 
+                <div>
+                    <strong>Device:</strong>
+                    {{ device }}
+                </div>
 
-<p>
-<b>Device:</b> {{ device }}
-</p>
+                <div>
+                    <strong>Image Size:</strong>
+                    {{ width }} × {{ height }}
+                </div>
 
+            </div>
 
+        </div>
 
-<p>
-<b>Processing Time:</b> {{ processing_time }} seconds
-</p>
 
 
+        <!-- Button -->
 
-</div>
+        <div class="result-actions">
 
-<p>
-<b>Confidence:</b> {{ confidence }}%
-</p>
+            <a href="/" class="back-button">
+                ← Analyze Another Image
+            </a>
 
+        </div>
 
 
+    </main>
 
 
 
-<a href="/" class="button">
+    <!-- Footer -->
 
-Analyze Another Image
+    <footer>
 
-</a>
+        <p>
+            AI Crowd Density Estimation Web App
+        </p>
 
+        <p>
+            Built with Python, PyTorch and Flask
+        </p>
 
-</div>
+    </footer>
 
 
 </body>
-
 
 </html>

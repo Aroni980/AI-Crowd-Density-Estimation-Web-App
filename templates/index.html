@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>AI Crowd Density Estimation</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Crowd Density Estimation</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
@@ -13,150 +18,402 @@
 <body>
 
 
-<div class="home-container">
+    <!-- Navigation Bar -->
 
+    <nav class="navbar">
 
-<!-- Hero Section -->
+        <div class="logo">
+            Crowd<span>AI</span>
+        </div>
 
-<div class="hero">
+        <div class="nav-links">
 
+            <a href="#home">Home</a>
 
-<h1>
-AI Crowd Density Estimation
-</h1>
+            <a href="#how-it-works">
+                How It Works
+            </a>
 
+            <a href="#about">
+                About
+            </a>
 
-<p>
-Deep Learning based crowd analysis system using CSRNet.
-Upload a crowd image and get instant people count,
-density heatmap and crowd level prediction.
-</p>
+        </div>
 
+    </nav>
 
-</div>
 
 
+    <!-- Hero Section -->
 
+    <section class="hero" id="home">
 
 
+        <div class="hero-content">
 
-<!-- Upload Card -->
+            <div class="badge">
+                AI-Powered Crowd Analysis
+            </div>
 
 
-<div class="upload-card">
+            <h1>
 
+                Understand Crowd Density
 
-<h2>
-Upload Crowd Image
-</h2>
+                <span>
+                    with AI
+                </span>
 
+            </h1>
 
-<p>
-Supported formats: JPG, JPEG, PNG
-</p>
 
+            <p>
 
+                Upload an image and let our deep learning model
+                estimate the number of people and visualize
+                crowd density using an AI-generated heatmap.
 
-<form action="/upload" method="POST" enctype="multipart/form-data">
+            </p>
 
+        </div>
 
 
-<div class="upload-area">
 
+        <!-- Upload Card -->
 
-<input 
-type="file"
-name="image"
-accept=".jpg,.jpeg,.png"
-required
->
+        <div class="upload-card">
 
 
-</div>
+            <div class="upload-icon">
+                📷
+            </div>
 
 
+            <h2>
+                Upload a Crowd Image
+            </h2>
 
-<button type="submit">
 
-Analyze Crowd
+            <p>
+                Select an image containing people to begin analysis.
+            </p>
 
-</button>
 
 
+            <!-- IMPORTANT:
+                 The entire upload area is INSIDE the form -->
 
-</form>
+            <form
+                action="{{ url_for('upload') }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
 
 
-</div>
+                <div class="upload-box">
 
 
+                    <input
+                        type="file"
+                        id="imageInput"
+                        name="image"
+                        accept="image/*"
+                        required
+                    >
 
 
+                    <label
+                        for="imageInput"
+                        class="choose-btn"
+                    >
+                        Choose Image
+                    </label>
 
 
-<!-- Features -->
+                    <p id="file-name">
+                        JPG, JPEG, PNG or WEBP
+                    </p>
 
 
-<div class="features">
+                </div>
 
 
 
-<div class="feature-card">
+                <!-- Image Preview -->
 
-<h3>
-👥 People Counting
-</h3>
+                <div
+                    id="preview-container"
+                    class="preview-container"
+                >
 
-<p>
-AI model estimates the number of people in the image.
-</p>
+                    <img
+                        id="preview-image"
+                        src=""
+                        alt="Image Preview"
+                    >
 
-</div>
+                </div>
 
 
 
+                <!-- Analyze Button -->
 
+                <button
+                    type="submit"
+                    class="analyze-btn"
+                >
+                    Analyze Crowd
+                </button>
 
-<div class="feature-card">
 
-<h3>
-🔥 Density Heatmap
-</h3>
+            </form>
 
-<p>
-Visual crowd concentration map generated automatically.
-</p>
 
-</div>
+        </div>
 
 
+    </section>
 
 
 
+    <!-- How It Works -->
 
-<div class="feature-card">
+    <section
+        class="how-section"
+        id="how-it-works"
+    >
 
-<h3>
-🤖 Deep Learning
-</h3>
 
-<p>
-Powered by CSRNet and PyTorch.
-</p>
+        <div class="section-heading">
 
-</div>
 
+            <span>
+                HOW IT WORKS
+            </span>
 
 
+            <h2>
+                Crowd analysis in three simple steps
+            </h2>
 
-</div>
 
+        </div>
 
 
-</div>
+
+        <div class="steps">
+
+
+            <!-- Step 1 -->
+
+            <div class="step-card">
+
+
+                <div class="step-number">
+                    01
+                </div>
+
+
+                <h3>
+                    Upload
+                </h3>
+
+
+                <p>
+                    Upload an image containing a crowd.
+                </p>
+
+
+            </div>
+
+
+
+            <!-- Step 2 -->
+
+            <div class="step-card">
+
+
+                <div class="step-number">
+                    02
+                </div>
+
+
+                <h3>
+                    Analyze
+                </h3>
+
+
+                <p>
+                    Our deep learning model processes the image
+                    and estimates the crowd count.
+                </p>
+
+
+            </div>
+
+
+
+            <!-- Step 3 -->
+
+            <div class="step-card">
+
+
+                <div class="step-number">
+                    03
+                </div>
+
+
+                <h3>
+                    Visualize
+                </h3>
+
+
+                <p>
+                    View the estimated crowd count and
+                    AI-generated density heatmap.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- About Section -->
+
+    <section
+        class="about-section"
+        id="about"
+    >
+
+
+        <div class="about-content">
+
+
+            <span>
+                ABOUT THE PROJECT
+            </span>
+
+
+            <h2>
+                Deep Learning for Crowd Density Estimation
+            </h2>
+
+
+            <p>
+
+                This project uses a deep learning-based crowd
+                counting model to estimate the number of people
+                present in an image. The system also generates
+                a density heatmap to visually represent areas
+                with higher crowd concentration.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+
+        <p>
+            AI Crowd Density Estimation Web App
+        </p>
+
+
+        <p>
+            Built with Python, PyTorch and Flask
+        </p>
+
+
+    </footer>
+
+
+
+    <!-- Image Preview Script -->
+
+    <script>
+
+
+        const imageInput =
+            document.getElementById("imageInput");
+
+
+        const previewContainer =
+            document.getElementById("preview-container");
+
+
+        const previewImage =
+            document.getElementById("preview-image");
+
+
+        const fileName =
+            document.getElementById("file-name");
+
+
+
+        imageInput.addEventListener(
+            "change",
+            function () {
+
+
+                const file =
+                    this.files[0];
+
+
+                if (file) {
+
+
+                    fileName.textContent =
+                        file.name;
+
+
+
+                    const reader =
+                        new FileReader();
+
+
+
+                    reader.onload =
+                        function (event) {
+
+
+                            previewImage.src =
+                                event.target.result;
+
+
+                            previewContainer.style.display =
+                                "block";
+
+
+                        };
+
+
+
+                    reader.readAsDataURL(file);
+
+
+                }
+
+            }
+        );
+
+
+    </script>
 
 
 </body>
-
 
 </html>
